@@ -1,0 +1,31 @@
+{% comment %} 实现的核心点就是以下几点
+
+- 构造src => ```url?param=val&callback=callbackName```
+- 创造一个script标签 ```const node = document.createElement('script')```
+- body里插入script标签 ```document.appendChild(node)```
+- 用回调函数接受数据并处理。 {% endcomment %}
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    function JSONP(request) {
+        this.url = request.url;
+        this.callback = request.callback;
+    }
+    JSONP.prototype.create = function() {
+        var send = this.url + '?callback=' + this.callback;
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = this.url;
+        head.appendChild(script);   
+    }
+    new JSONP({
+        url: 'www.baidu.com',
+        callback: 'getName'
+    }).create();
+    function getName(data) {
+        console.log(data);
+    }
+</script>
+</head>
+</html>
