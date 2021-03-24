@@ -54,6 +54,22 @@ f1()
 - 宏任务：主代码块 > setImmediate > MessageChannel > setTimeout/setInterval
 - 微任务：process.nextTick > Promise > MutationObserver
 
+async 函数await时相当于
+```
+async function async() {
+  await awaitfunction
+  console.log('async end')
+}
+```
+```
+async function async1() {
+  Promise.resolve(awaitfunction).then(() => {
+    console.log('async end')
+  })
+}
+```
+相当于await是立即执行，后面的加入微任务中执行。
+
 ```
 setTimeout(()=> {
     console.log('settimeout1');

@@ -1,0 +1,58 @@
+<!-- 圣杯布局就是上下定高，中间高度自适应，中间两侧边栏定宽，中间自适应
+主栏把方向设置为垂直，然后中间flex1，两边定高。或者也可以height: calc(100% - 200px)
+中间轴设置diplay:flex此时中间轴线为水平轴，设置两边定宽，中间flex:1
+轴线的align-item默认均为strech，即默认填满容器。 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .main {
+            display: flex;
+            height: 100%;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        .header{
+            height: 100px;
+            background-color: black;
+        }
+        .middle-container{
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+        }
+        .left{
+            background-color: brown;
+            width: 200px;
+        }
+        .middle{
+            background-color: antiquewhite;
+            flex: 1;
+        }
+        .right{
+            background-color: aqua;
+            width: 200px;
+        }
+        .footer{
+            background-color: green;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header"></div>
+        <div class="middle-container">
+            <div class="left"></div>
+            <div class="middle"></div>
+            <div class="right"></div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>

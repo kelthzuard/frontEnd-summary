@@ -46,3 +46,13 @@
 - webWorks
 - serviceWorks
 - 拖放
+
+## 设备访问
+
+- 获取地理位置
+- 触摸检测
+
+## 样式
+
+- css动画(animation)
+- flex

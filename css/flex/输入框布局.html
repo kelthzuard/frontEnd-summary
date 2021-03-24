@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    html, body {
+        height: 100%;;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    .box1 {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+    }
+    .showBox {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        height: 280px;
+    }
+    .flex1 {
+        flex: 1;
+    }
+    .input {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        
+    }
+    .info {
+        flex: 0 1 50%;
+        border: 2px solid #333;
+        height: 20px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">
+            <div class="showBox">
+                <p class="flex1">this is box1 left</p>
+                <div class="input flex1">
+                    <div class="info"></div>
+                </div>
+                <div class="input flex1"></div>
+            </div>
+            <div class="showBox">
+                <p class="flex1">this is box1 left</p>
+                <div class="input flex1">
+                    <div class="info"></div>
+                </div>
+                <div class="input flex1"></div>
+            </div>
+        </div>
+        <div class="box1">
+            <div class="showBox">
+                <p class="flex1">this is box1 left</p>
+                <div class="input flex1">
+                    <div class="info"></div>
+                </div>
+                <div class="input flex1"></div>
+            </div>
+            <div class="showBox">
+                <p class="flex1">this is box1 left</p>
+                <div class="input flex1">
+                    <div class="info"></div>
+                </div>
+                <div class="input flex1"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

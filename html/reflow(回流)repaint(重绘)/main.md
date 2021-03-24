@@ -3,8 +3,8 @@
 ![image](./img.png)
 
 网页生成的步骤分为五步
-1. HTML代码转换为DOM树
-2. CSS代码转换为CSSOM(CSS object Model)
+1. HTML代码转换为DOM树,DOM树是通过DOM解析器将html文本转换为一颗从根节点到最末端节点的树。该树只包含html信息
+2. CSS代码转换为CSSOM(CSS object Model)，即对应DOM树将css进行解析为一颗结构类似的树
 3. 结合DOM树和CSSOM构造渲染树（包含每个节点的视觉信息）
 4. 生成布局，即对渲染树的每个节点进行平面合成（计算位置宽高父子等）
 5. 将布局绘制在屏幕上。
