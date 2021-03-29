@@ -142,3 +142,8 @@ Array.prototype.mapUsingReduce = function(callback, thisArg) {
 let k = [1,2,3].mapUsingReduce((val, index, array) => {return val ++;})
 console.log(k)
 ```
+
+## for in / for of
+
+- for in遍历索引 （遍历object）
+- for of遍历值

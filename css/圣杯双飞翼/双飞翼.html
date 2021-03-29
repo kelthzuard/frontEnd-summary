@@ -1,0 +1,52 @@
+<!-- 双飞翼就是middle里面一个content，设置margin:0 100px;外面middle:100%，左右两边设置负边距就行 -->
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container{
+}
+.container::after{
+    content: '';
+    clear: both;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    display: block;
+}
+.middle{
+    width: 100%;
+    height: 100px;
+    float: left;
+}
+.content{
+    margin: 0 100px;
+    height: 100px;
+    background-color: blueviolet;
+}
+.left{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    float: left;
+    margin-left: -100%;
+}
+.right{
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+    float: left;
+    margin-left: -100px;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="middle">
+            <div class="content">asdasdasdasdas</div>
+        </div>
+        <div class="left"></div>
+        <div class="right">asda</div>
+    </div>
+</body>
+</html>

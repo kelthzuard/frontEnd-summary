@@ -1,0 +1,33 @@
+<!-- flex order=-1会优先显示 -->
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container{
+    display: flex;
+    height: 100px;
+}
+.middle{
+    flex: 1;
+    background-color: aquamarine;
+}
+.left{
+    width: 100px;
+    order: -1;
+    background-color: black;
+}
+.right{
+    width: 100px;
+    background-color: blue;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="middle">adasdasdasdasdasd</div>
+        <div class="left"></div>
+        <div class="right">asdasdasdasdsaasdasd</div>
+    </div>
+</body>
+</html>

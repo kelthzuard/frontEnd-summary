@@ -45,3 +45,17 @@ console.log(Number(undefined)) // NaN
 1 .toString()
 (1).toString90
 ```
+
+## null 和 undefined的区别
+
+- null代表未定义，此处不应该出现值
+- null作为原型链的终点
+- typeof null 为object
+- null会被转义为0 null + 0 = 0
+
+- undefined代表此处已经定义，但没有值
+- typeof undefined 为 "undefined"
+- undefined会被转义为NaN 0 + undefined = NaN
+
+- null == undefined true
+- null ==== undefined false

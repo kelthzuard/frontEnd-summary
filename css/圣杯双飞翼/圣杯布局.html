@@ -1,0 +1,56 @@
+<!-- 思路：首先三列都设置float，父元素清除浮动，两边元素设置宽度，中间设置百分百，注意middle一定要在最前面，不然会遮住left！！！！
+left设置margin-left:-100%代表跳过中间整个middle的宽度，right设置margin-left：-width代表跳过自己的宽度
+为了中间不被遮挡，设置父元素padding：0 100px。左右移动，设置position:relative, 并且往两边移动left:-100px;right:-100px; -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container{
+    padding: 0 100px;
+}
+.container::after{
+    content: '';
+    clear: both;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    display: block;
+}
+.middle{
+    width: 100%;
+    height: 100px;
+    background-color: blueviolet;
+    float: left;
+    position: relative;
+}
+.left{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    float: left;
+    margin-left: -100%;
+    position: relative;
+    left: -100px;
+}
+.right{
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+    float: left;
+    margin-left: -100px;
+    position: relative;
+    right: -100px;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="middle">adasdasdasdasdasd</div>
+        <div class="left"></div>
+        <div class="right">asdasdasdasdsaasdasd</div>
+    </div>
+</body>
+</html>

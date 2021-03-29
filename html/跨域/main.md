@@ -75,3 +75,34 @@ document.domin = 'test.com'
 ```
 
 ## websocket
+
+##  window.postMessage
+
+使用window.postMessage可以在同一个窗口下的不同页面间进行跨域通信。
+
+```
+targetWindow.postMessage(message, targetOrigin)
+```
+
+- targetWindow是另一个窗口的引用，比如window.opener(打开当前页面的窗口)
+- targetOrigin是可以发送给哪些origin的窗口，指定一个url，只有该url窗口可以接受消息。
+
+```
+window.addEventListener('message', callback(e))
+```
+
+e有三个属性
+
+- data:接受的数据
+- origin：发送窗口的origin
+- source：发送窗口的引用，方便建立双向通信
+
+```
+var page = window.open("https://example.com")
+page.postMessage("hello", "https://example.com")
+window.addEventListener("message", (e) => {
+  if (e.origin == 'https://example.com') {
+    console.log(e.data)
+  }
+})
+```

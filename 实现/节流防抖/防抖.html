@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function debounce_timeout(f, time) {
+    var timer = null
+    return function() {
+        var that = this
+        var args = arguments
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(function() {
+            f.apply(that, args)
+            timer = null
+        }, time)
+    }
+}
+function debounce_date(f, time) {
+    var timer = 0
+    return function() {
+        var now = +new Date()
+        if (now - timer >= time) {
+            f.apply(this, arguments)
+        }
+        timer = now
+    }
+}
+// 立即执行
+// 当timer不存在时立即执行，timeout里面设置timer过期。
+function debounce_immediate(f, time, immediate) {
+    var timer = null
+    return function() {
+        var that = this
+        var args = arguments
+        if (immediate) {
+            if (!timer) {
+                f.apply(that, args)
+            }
+            clearTimeout(timer)
+            timer = setTimeout(function() {
+                timer = null
+            }, time)
+        }
+        else {
+            clearTimeout(timer)
+            timer = setTimeout(function() {
+                f.apply(that, args)
+            }, time)
+        }
+    }
+}
+
+function onresize(e) {
+    console.log(e)
+}
+window.addEventListener('resize', debounce_immediate(onresize, 1000, true))
+</script>
+</head>
+<body>
+</body>
+</html>

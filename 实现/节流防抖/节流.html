@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    // 这版节流用date特点是1：第一次会触发。2：不会按时间规律平均触发，而且最后一次不会触发。
+    function throttle_date(f, time) {
+        var timer = new Date()
+        return function() {
+            let now = +new Date() //转换为时间戳
+            if (now - timer >= time) {
+                timer = now
+                f.apply(this, arguments) //这里要绑定this，this指向事件触发的元素，不绑定的话只会指向window
+            }
+        }
+    }
+    // 这版节流用settimeout，第一次不会触发，最后一次结束会触发。
+    function throttle_setTimeout(f, time) {
+        var timer = null
+        return function() {
+            var that = this
+            var args = arguments
+            if (timer) { return }
+            else {
+                timer = setTimeout(function() {
+                    f.apply(that, args)
+                    timer = null
+                }, time)
+            }
+        }
+    }
+    // 这版既可以第一次触发，也可以最后一次触发。
+    function throttle(f, time) {
+        var timer = null
+        var prev = 0
+        return function() {
+            var args = arguments
+            var that = this
+            var now = new Date()
+            var remain = time - (now - prev)
+            if (remain <= 0) { //这种用来第一次触发，remain用来判断是否立即触发
+                if (timer) {
+                    clearTimeout(timer)
+                    tiemr = null
+                }
+                f.apply(that, args)
+                prev = now
+            }
+            else if (!timer){ //如果不是立即触发就触发settimeout
+                timer = setTimeout(function() {
+                    f.apply(that, args)
+                    prev = +new Date()
+                    timer = null
+                }, remain)
+            }
+        }
+    }
+    function onscroll(e) {
+        console.log(e)
+    }
+    window.addEventListener('resize', throttle(onscroll, 1000))
+</script>
+</head>
+<body>
+</body>
+</html>
