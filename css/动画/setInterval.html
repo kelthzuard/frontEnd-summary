@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    .box{
+        width: 200px;
+        height: 200px;
+        background-color: #000;
+    }
+</style>
+<script>
+    (function() {
+        var margin = 0
+        setInterval(function() {
+            margin += 10
+            document.querySelector('.box').style.marginLeft = margin + 'px'
+        }, 16)
+    })()
+</script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

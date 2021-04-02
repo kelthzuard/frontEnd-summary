@@ -32,3 +32,23 @@
 3. 将原始元素拷贝到一个脱离文档的节点中，修改副本，完成后再替换原始元素。或 先将元素从document中删除，完成修改后再把元素放回原来的位置
 - 设置position为absolute或fix来脱离文档流。
 - DOM的多个读写操作应该放在一起，浏览器会把其变为一个队列处理。
+
+## createDocumentFragment
+
+```
+document.createDocumentFragment()
+```
+
+createDocumentFragment可以创造一个虚拟的文档碎片。该文档碎片存在于内存中，不会引起回流。
+在向其添加多个子元素后，将文档碎片添加进DOM中，文档碎片的所有子元素会添加进中
+文档碎片是一个虚拟的概念，并不是一个实际存在的节点，在添加后无法再取到。
+
+```
+var frag = document.createDocumentFragment()
+for (let i = 0; i < 3; i ++) {
+    var ele = document.createElement('p')
+    ele.innerHTML = i
+    frag.appendChild(ele)
+}
+document.querySelector('#father').appendChild(frag)
+```

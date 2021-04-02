@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <div id="father"></div>
+    <script>
+        var frag = document.createDocumentFragment()
+        for (let i = 0; i < 3; i ++) {
+            var ele = document.createElement('p')
+            ele.innerHTML = i
+            frag.appendChild(ele)
+        }
+        document.querySelector('#father').appendChild(frag)
+    </script>
+</body>
+</html>

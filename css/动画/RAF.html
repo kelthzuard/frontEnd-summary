@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    .square{
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+    }
+</style>
+</head>
+<body>
+    <div class="square"></div>
+<script>
+    (function() {
+        var margin = 0
+        var cur = 0
+        var ele = document.querySelector('.square')
+        console.log(ele)
+        function move(time) {
+            var priod = time - cur
+            var diff = Math.min(10, 0.1*priod)
+            margin += diff
+            ele.style.transform = "translateX("+ margin +"px)"
+            window.requestAnimationFrame(move)
+        }
+        requestAnimationFrame(move)
+    })()
+</script>
+</body>
+</html>
