@@ -37,7 +37,7 @@ Vue.prototype.$axios = axios
 Vue.directive('stick', {
     bind: function(el, binding, vnode) {
         el.style.position = fixed
-        el.style.top = binding.
+        el.style.top = binding.value
     }
 })
 ```

@@ -54,6 +54,58 @@ f1()
 - 宏任务：主代码块 > setImmediate > MessageChannel > setTimeout/setInterval
 - 微任务：process.nextTick > Promise > MutationObserver
 
+***如果宏任务中嵌套了微任务，则会在执行完一个宏任务后立即清空所有微任务，再进行下一个宏任务，而在node11以下，会先进行当前级别的宏任务队列。再进行微任务***  
+***宏任务中嵌套的宏任务会放在下一个时间步执行***
+
+```
+console.log('start')
+setTimeout(() => {
+    console.log('timeout1')
+    setTimeout(() => {
+        console.log('timeout3')
+    })
+    Promise.resolve().then(() => {
+        console.log('promise1')
+    })
+}, 0)
+
+setTimeout(() => {
+    console.log('timeout2')
+    setTimeout(() => {
+        console.log('timeout4')
+    })
+    Promise.resolve().then(() => {
+        console.log('promise2')
+    })
+})
+console.log('end')
+```
+这段代码在node11以下输出
+```
+start
+end
+timeout1
+timeout2
+promise1
+promise2
+timeout3
+timeout4
+```
+说明了同级别的宏任务会优先执行，再执行微任务
+这段代码在浏览器输出
+```
+start
+end
+timeout1
+promise1
+timeout2
+promise2
+timeout3
+timeout4
+```
+说明了宏任务执行完后会立即清空微任务，再执行宏任务。
+
+
 async 函数await时相当于
 ```
 async function async() {
