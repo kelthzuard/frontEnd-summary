@@ -37,3 +37,9 @@
 ## beforeDestroy
 
 ## destroyed
+
+## 子组件得生命周期
+
+子组件得创建发生在beforemount 到 mounted之间，也就是
+父beforeCreate -> 父created -> 父beforeMount -> 子beforeCreate -> 子created -> 子beforeMount -> 子mounted ->父mounted  
+父beforeupdate -> 子beforeupdate -> 子updated -> 父updated

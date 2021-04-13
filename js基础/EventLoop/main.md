@@ -38,6 +38,7 @@ f1()
   - 外部I/O
   - ajax
   - DOM回调
+  - setImmediate
   - setTimeout，setInterval
 - 微任务：一般是宏任务在线程中执行时产生的回调
   - Promise
@@ -54,7 +55,7 @@ f1()
 - 宏任务：主代码块 > setImmediate > MessageChannel > setTimeout/setInterval
 - 微任务：process.nextTick > Promise > MutationObserver
 
-***如果宏任务中嵌套了微任务，则会在执行完一个宏任务后立即清空所有微任务，再进行下一个宏任务，而在node11以下，会先进行当前级别的宏任务队列。再进行微任务***  
+***如果宏任务中嵌套了微任务，则会在执行完一个宏任务后立即清空所有微任务(包括嵌套的微任务)，再进行下一个宏任务，而在node11以下，会先进行当前级别的宏任务队列。再进行微任务***  
 ***宏任务中嵌套的宏任务会放在下一个时间步执行***
 
 ```

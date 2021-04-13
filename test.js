@@ -1,14 +1,12 @@
-function a() {
-    this.va = 'va'
-}
-a.prototype.ap = 1
-
-function b() {
-    this.vb = 'vb'
-}
-
-b.prototype = new a()
-
-let B = new b()
-
-console.log(b.__proto__)
+setTimeout(() => {
+    console.log('s1')
+    Promise.resolve().then(() => {
+        console.log('p1')
+        Promise.resolve().then(() => {
+            console.log('p2')
+        })
+    })
+})
+setTimeout(() => {
+    console.log('s2')
+})
