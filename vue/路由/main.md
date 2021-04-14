@@ -59,6 +59,39 @@ im father
 
 ## 路由模式
 
+路由的模式原理如下
+
+- 执行```this.$router.push```或者监听```window.addEvenListener('hashChange', cb)```
+- ```HashHistory.push()```,将路由添加到当前路由记录中
+- ```const route = this.match(location)```,通过match函数匹配到需要渲染的组件
+- ```this.update(route)``` -> ```app._route = route``` 更新路由，app将_route通过双向绑定劫持，在app_route更新后，调用render函数
+- render函数将当前组件渲染到出口```<router-view></router-view>```中
+- 设置路由显示的地址是当前路由```window.location.hash = route.fullpath```
+
+### hash模式
+
+- hash模式是利用了window.location.hash
+- hash模式的标志是在url后面加了一个#，后面的值可以取到。
+- hash字符串不会影响url的发送，在url发送时会忽略hash字符串
+- hash组字符串的改变不会引起页面导航或者重新加载，但是会在历史记录里进行添加。
+
+### H5 history模式
+
+history模式拥有如下api
+
+- history.pushState()
+- history.replaceState()
+- history.go()
+- history.forward()
+- history.back()
+
+history特性
+
+- 调用方法不会引起加载url，但会改变地址栏url
+- history变化后的url和真实url一摸一样，所以刷新的时候会引起浏览器请求对应的地址
+- 后端需要做相应的配置，把找不到请求全部返回200，并重定向到首页
+- 前端需要匹配所有的路由并给出覆盖全局的404
+
 ## 动态路由
 
 可以在path中绑定变量实现动态路由
@@ -78,6 +111,7 @@ im father
 - 使用```<router-link :to="{path: '/index', params: {}}"></router-link>```
 - 使用router.push()会往路由记录里添加一个记录
 - router.replace不会添加记录，会把当前记录进行替换
+- router.go(),router.back(),router.forward()
 
 params 和 query 的区别
 
@@ -174,6 +208,31 @@ const asyncComp = () => require('@/components/')
 ```
 
 ## keepalive
+
+可以在```<router-view></router-view>```上使用```keep-alive```在路由层面缓存组件  
+为了控制哪些可以被缓存，可以用两种办法
+
+- include, exclude
+
+```
+<keep-alive include="showpage">
+    <router-view></router-view>
+</keep-alive>
+
+```
+
+- 使用路由元信息meta
+
+```
+<keep-alive v-if="$route.meta.cache">
+    <router-view> //需要缓存的组件
+    </router-view>
+<keep-alive>
+<keep-alive v-if="!$route.meta.cache">
+    <route-view> //不需要缓存的组件。
+    </router-view>
+</keepalive>
+```
 
 ## this.$route 和 this.$router 的区别
 
