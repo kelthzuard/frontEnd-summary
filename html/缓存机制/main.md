@@ -61,6 +61,9 @@ cache-control是http/1.1的字段，优先级高于expire
 1. 对于不常变化的资源，设定max-age为一个较大的数保持缓存
 2. 对于常常变化的资源，设定no-cache: true 或者 max-age:0 使其快速更新。
 
+- 针对 HTML 文件：不开启缓存，把 HTML 放到自己的服务器上，而不是 CDN 服务上，同时关闭自己服务器上的缓存。自己的服务器只提供 HTML 文件和数据接口。
+- 针对静态的 JavaScript、CSS、图片等文件：开启 CDN 和缓存，上传到 CDN 服务上去，同时给每个文件名带上由文件内容算出的 Hash 值， 例如上面的 app_a6976b6d.css 文件。 带上 Hash 值的原因是文件名会随着文件内容而变化，只要文件发生变化其对应的 URL 就会变化，它就会被重新下载，无论缓存时间有多长。
+
 ## 浏览器缓存
 
 - cookie:手动设置过期时间，否则关闭tag时清除```document.cookie="username=John Doe; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/";```
