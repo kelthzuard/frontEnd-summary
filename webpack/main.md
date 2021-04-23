@@ -72,9 +72,10 @@ webpack的功能包括：
    2. resolve.modules直接指定第三方库，减少寻找范围
    3. resolve.extensions指定没有使用后缀时寻找文件后缀的范围，尽量长度短。
 4. 分离代码：使用```splitChunkPlugin```插件分离公共代码和库代码
-5. 使用```webpack-parallel-uglify-plugin```并行执行代码压缩
-6. 使用tree shaking去除无用代码
-7. 开启缓存,```bable-loader```
+5. 使用externals排除大的包，比如vue,element-ui，使用cdn进行引入不进行打包。 
+6. 使用```webpack-parallel-uglify-plugin```并行执行代码压缩
+7. 使用tree shaking去除无用代码
+8. 开启缓存,使用```Dllplugin```进行动态链接(缓存)
 
 ## 热更新原理
 
