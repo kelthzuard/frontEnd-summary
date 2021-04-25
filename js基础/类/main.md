@@ -72,3 +72,9 @@ class Dog extends Animal{
     }
 }
 ```
+
+## es6继承和非es6继承的区别
+
+- es6 继承的本质是调用父构造函数并修改父构造函数实例的this来得到子类。所以必须先super()
+- 对于非es6继承。```Child.__proto__ == Function.prototype```
+- 对于es6继承 ```Child.__proto__ = Father```

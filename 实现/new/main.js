@@ -13,8 +13,7 @@ function myNew(fn, ...args) {
 function myNew2(fn) {
     var obj = {}
     obj.__proto__ = fn.prototype
-    var args = Array.prototype.slice.call(arguments)
-    args.shift()
+    var args = Array.prototype.slice.call(arguments, 1)
     var r = fn.apply(obj, args)
     return r instanceof Object?r:obj
 }
