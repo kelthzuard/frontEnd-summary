@@ -17,6 +17,10 @@ class myPromise{
         this.reason = null
         this.callbacks = []
         let resolve = (value) => {
+            if (value instanceof myPromise) {
+                // 如果resolve的是promise，那这个resolve一定是then处理中回调函数返回的promise，对其递归调用then，拿到他处理完成后传出来的值。
+                return value.then(resolve, reject)
+            }
             this.state = FULFILLED
             this.value = value
             this.callbacks.forEach(fn => {
@@ -54,7 +58,7 @@ class myPromise{
                         try {
                             // 这里拿到回调函数的返回值
                             result = this.state == FULFILLED?onFullfiled(this.value):onRejected(this.reason)
-                            this.handler(result, nextResolve, nextReject)
+                            nextResolve(result)
                         }
                         catch(err) { nextReject(err) }
                     }, 0);
@@ -64,49 +68,88 @@ class myPromise{
                 setTimeout(() => {
                     try {
                         result = this.state == FULFILLED?onFullfiled(this.value):onRejected(this.reason)
-                        this.handler(result, nextResolve, nextReject)
+                        nextResolve(result)
                     }
                     catch (err) { nextReject(err) }
                 }, 0);
             }
         })
     }
-    handler(result, nextResolve, nextReject) {
-        if (result instanceof myPromise) {
-            // 如果回调函数返回promise，需要执行promise的then方法拿到返回的参数，直到返回的不是promise
-            let t = result.then 
-            t.call(result, v => {
-                // 递归调用
-                this.handler(v, nextResolve, nextReject)
-            }, err => {
-                nextReject(err)
-            })
-        }
-        else { 
-            // 如果不是promise，就直接resolve结果
-            nextResolve(result)
-        }
+    catch(errCallback) {
+        // 相当于一个失败的then回调，将失败回调传入
+        return this.then(null ,errCallback)
+    }
+    finally(callback) {
+        // finally方法是无论如何都要执行，并且执行给下一个then的值始终是当前返回值，而不是当前then里的返回值
+        // 所以需要先用Promise.resolve把then里的返回值消化掉，再返回上一个promise的返回值
+        return this.then(value => {
+            return myPromise.resolve(callback()).then(() => value)
+        },
+        err => {
+            return myPromise.resolve(callback()).catch(() => err)
+        })
+    }
+    static resolve(value) {
+        // 静态方法resolve，直接返回一个promise并resolve掉
+        return new myPromise((resolve, reject) => {
+            resolve(value)
+        })
+    }
+    static reject(reason) {
+        return new myPromise((resolve, reject) => {
+            reject(reason)
+        })
     }
 }
 
-new myPromise(function(resolve, reject) {
-    setTimeout(() => {
-        resolve(2)
-    }, 1000)
-}).then(v => {
-    return new myPromise((resolve) => {
-        console.log(v)
+new myPromise((resolve, reject) => {
+    resolve(1)
+})
+.finally(v => {
+    return new myPromise((resolve, reject) => {
+        console.log(1)
         setTimeout(() => {
-            resolve(3)
-        }, 1000)
-    }).then((v) => {
-        return new myPromise((resolve) => {
-            console.log(v)
-            setTimeout(() => {
-                resolve(4)
-            }, 1000)
-        })
+            resolve(2)
+        }, 1000);
     })
-}).then().then(v => {
+})
+.then(v => {
     console.log(v)
 })
+
+// myPromise.resolve(
+//     new myPromise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log('1')
+//             resolve(2)
+//         }, 1000);
+//     })
+// )
+// .then(v => {
+//     setTimeout(() => {
+//         console.log(v)
+//     }, 1000);
+// })
+
+// new myPromise(function(resolve, reject) {
+//     console.log(1)
+//     setTimeout(() => {
+//         resolve(2)
+//     }, 1000)
+// }).then(v => {
+//     return new myPromise((resolve) => {
+//         console.log(v)
+//         setTimeout(() => {
+//             resolve(3)
+//         }, 1000)
+//     }).then((v) => {
+//         return new myPromise((resolve) => {
+//             console.log(v)
+//             setTimeout(() => {
+//                 resolve(4)
+//             }, 1000)
+//         })
+//     })
+// }).then().then(v => {
+//     console.log(v)
+// })
