@@ -29,6 +29,7 @@
         }
     }
     // 这版既可以第一次触发，也可以最后一次触发。
+    // 完整版的基本都是用同步的思想保持第一次加载。后面圈闭用setTimeout就行
     function throttle(f, time) {
         var timer = null
         var prev = 0

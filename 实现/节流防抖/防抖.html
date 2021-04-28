@@ -28,6 +28,7 @@ function debounce_date(f, time) {
 }
 // 立即执行
 // 当timer不存在时立即执行，timeout里面设置timer过期。
+// 完整版的基本都是用同步的思想保持第一次加载。后面圈闭用setTimeout就行
 function debounce_immediate(f, time, immediate) {
     var timer = null
     return function() {

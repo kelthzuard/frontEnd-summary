@@ -1,0 +1,25 @@
+html, body, .content{
+    height: 100%;
+}
+
+.wrap{
+    width: 20%;
+}
+
+._img_container{
+    width: 100%;
+    position: relative;
+    height: 0;
+}
+
+._img_container.feature{
+    padding-bottom: 30%;
+}
+
+._img_container img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
