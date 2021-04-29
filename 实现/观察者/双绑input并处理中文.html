@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input type="text">
+        <div id="show"></div>
+    </body>
+<script>
+(function() {
+    var data = {
+        word: 'im word'
+    }
+    function defienReactive(data, key, value) {
+        Object.defineProperty(data, key, {
+            get: function() {
+                return value // 这里要用闭包哈，要不然直接return data[key]会一直反复调用get，导致栈溢出。
+            },
+            set: function(newVal) {
+                if (newVal != value) {
+                    value = newVal
+                    document.querySelector('#show').textContent = newVal
+                }
+            }
+        })
+    }
+    defienReactive(data, 'word', data['word'])
+
+    function changeView(e) {
+        console.log('input')
+        data['word'] = e.target.value
+    }
+
+    var inputNode = document.querySelector('input')
+    inputNode.addEventListener('input', debounce(changeView, 500))
+
+
+    // 下面完成input中处理防抖和中文的处理
+    // 对于input进行防抖，处理中文输入有几个方法
+    // compositionstart:输入法开始输入，阻止input事件
+    // conpositionupdate:输入法更新
+    // compositionend：输入法结束。调用input
+
+    function debounce(fn, delay) {
+        var prev = 0
+        var timer = null
+        return function(e) {
+            if (e.target.composing) {
+                return // 如果正在输入法过程中，直接返回不触发。
+            }
+            var now = +new Date()
+            var that = this
+            var args = Array.prototype.slice.call(arguments)
+            clearTimeout(timer)
+            if (delay - (now - prev) < 0) {
+                fn.apply(that, args)
+            }
+            else {
+                timer = setTimeout(function() {
+                    fn.apply(that, args)
+                    prev = +new Date()
+                }, delay)
+            }
+            prev = now
+        }
+    }
+
+    function onCompositionStart(e) {
+        e.target.composing = true //设置当前状态为正在输入法输入
+    }
+
+    function onCompositionEnd(e) {
+        e.target.composing = false // 撤销当前状态
+        var event = document.createEvent('HTMLEvents')
+        event.initEvent('input')
+        e.target.dispatchEvent(event)
+    }
+    inputNode.addEventListener('compositionstart', onCompositionStart)
+    inputNode.addEventListener('compositionend', onCompositionEnd)
+})()
+</script>
+</html>
