@@ -15,6 +15,7 @@ csrf主要原理是当用户成功登录某个网站并将登录凭证放在cook
   - 用户信息
   - 服务端签名生成的散列值
 - 上述token的构造确保了token无法被伪造。当用户第一次登陆时返回一个token并存储在localstorage中，确保不会被cookie携带。当每次提交请求的时候手动将token添加在请求头或者内容中。避免csrf的攻击
+- token可以存储在cookie中，但只是找个位置存，真正发表单请求的时候还是要单独发token。不只验证cookie中的token
 
 ## xss 跨站脚本攻击 cross-site scripting
 

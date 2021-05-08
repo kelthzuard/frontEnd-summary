@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<style>
+.base{
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+    transform: translate3D(0,0,0);
+}
+.active{
+    transform: translate3d(100px,0,0);
+}
+</style>
+<body>
+<div class="base" onclick="move(this)"></div>
+<script>
+    function move(target) {
+        console.log(typeof target)
+        target.className += ' active'
+        console.log(target.className)
+    }
+</script>
+</body>
+</html>

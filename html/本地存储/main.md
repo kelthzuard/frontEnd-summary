@@ -3,6 +3,7 @@
 - cookies始终在同源的http请求中携带。
 - cookies只能存储4kb以下的内容。
 - cookies会在设定的保持时间之后过期。
+- 服务端在登录成功后返回头字段```set-cookie:```进行cookie设置
 
 ```
 document.cookie = "test1=Hello";
