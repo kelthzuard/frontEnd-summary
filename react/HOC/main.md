@@ -50,13 +50,12 @@ render props是指将一个函数传入一个复用封装逻辑的组件，并�
 class AddProps extends Component{
     render () {
         return (
-            {this.props.children({userID: 1})}
+            {this.props.render({userID: 1})}
         )
     }
 }
-<AddProps>
-    {(userID) => {
-        <Child {...userID} />
-    }}
+<AddProps render={(userId) => {
+    <Component {...userId} {...this.props} />
+}}>
 </AddProps>
 ```
