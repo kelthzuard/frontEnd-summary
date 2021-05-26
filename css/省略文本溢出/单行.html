@@ -1,0 +1,45 @@
+<html>
+<head>
+<style>
+.container{
+    width: 100px;
+}
+.singleLine{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.multiLine{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-break: break-all;
+}
+
+.multiLine2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 18px;
+    max-height: 36px;
+    word-break: break-all;
+    position: relative;
+}
+
+.multiLine2::after{
+    content: '...';
+    width: 10px;
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0 20px 0 10px;
+}
+
+</style>
+</head>
+<body>
+    <div class="container multiLine2">asdasdasdasdasdasdasdasdasdasda</div>
+</body>
+</html>
