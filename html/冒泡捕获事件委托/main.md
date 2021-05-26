@@ -23,10 +23,9 @@
 不冒泡的事件：
 - blur
 - focus
+- scroll
 - mouseenter
 - mouseleave
-- load
-- unload
 - resize
 
 ## 阻止默认事件

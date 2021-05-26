@@ -85,3 +85,13 @@
 ### 外边距折叠
 
 ```margin-top```和```margin-bottom```相邻会取较大的一个，不会取其和。
+
+## position
+
+- 设置postion为absolute，top:0,left:0,right:0,bottom:0,会继承父元素的宽高
+- 相同情况下设置宽高，并margin: auto，会自动计算位置，等于垂直居中。
+
+## 可继承的样式
+
+- visibility
+- 所有文字相关的样式: font-size, color, font-weight, white-space, line-height, text-decoration
