@@ -69,3 +69,10 @@ cache-control是http/1.1的字段，优先级高于expire
 - cookie:手动设置过期时间，否则关闭tag时清除```document.cookie="username=John Doe; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/";```
 - localstorage：持久保存5M
 - sessionstorage：tag关闭时清除。
+
+## 针对html文件缓存
+
+为了防止html文件被强缓存导致无法更新，可以在htmlmeta标签中添加cache-control禁止缓存
+```
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+```

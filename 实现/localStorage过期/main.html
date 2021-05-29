@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+
+<script src="main.js"></script>
+<script>
+(function() {
+    var store = new Storage()
+    store.setItem('name', 'kel', 1000)
+    setTimeout(function() {
+        console.log(store.getItem('name'))
+    }, 2000)
+    setTimeout(function() {
+        console.log(store.getItem('name'))
+    }, 2000)
+})()
+</script>
+</body>
+</html>

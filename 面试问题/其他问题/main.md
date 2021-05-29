@@ -24,3 +24,13 @@ https://segmentfault.com/a/1190000011516068?utm_source=sf-similar-article
   - name: 'description' content="" 描述网页
   - name: 'viewpoint' content="width=device-width, inital-scale=1"
 - base:指明所有url的相对url
+
+## 内存泄漏
+
+- 没有使用的全局变量
+- 被遗忘的setInterval
+- 被遗忘的事件监听器
+- 被遗忘的map，set
+- 未释放的闭包
+
+监测方法：在devtools  memory一栏take snapshot分析。
