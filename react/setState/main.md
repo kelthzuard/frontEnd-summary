@@ -2,7 +2,7 @@
 
 !['image](img.png)
 
-useState是异步的，批量更新的。  
+setState是异步的，批量更新的。  
 
 更新流程如下
 

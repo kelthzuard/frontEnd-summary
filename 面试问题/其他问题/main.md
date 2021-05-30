@@ -34,3 +34,18 @@ https://segmentfault.com/a/1190000011516068?utm_source=sf-similar-article
 - 未释放的闭包
 
 监测方法：在devtools  memory一栏take snapshot分析。
+
+## git rebase 和 git merge
+
+- git merge：将分支合并到当前分支上，创建一个merge请求，保留各个分至的所有提交
+- git rebase：找到当前分至和合并分至的最近父节点，将合并分至的所有commit插入到父节点头部。
+
+优点：
+
+- 不会产生网状结构，不会有额外merge请求，提交一直保持一条直线
+
+缺点
+
+- 在公共分支上进行rebase会导致提交历史改变，然后所有人在该条历史上工作的人都会产生冲突。
+
+
