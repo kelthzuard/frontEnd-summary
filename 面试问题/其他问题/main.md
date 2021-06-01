@@ -48,4 +48,34 @@ https://segmentfault.com/a/1190000011516068?utm_source=sf-similar-article
 
 - 在公共分支上进行rebase会导致提交历史改变，然后所有人在该条历史上工作的人都会产生冲突。
 
+## 进程和线程通信
 
+进程
+
+- 管道
+- 共享内存
+- 信号量
+- 消息队列
+- socket
+
+线程
+
+- 共享内存
+
+## 引入图片的方式
+
+1. img
+2. background-img
+3. picture
+```
+<picture>
+  <source srcset="/imgBig.png" media="(min-width: 600px)">
+  <img src="imgSmall">
+</picture>
+```
+4. svg
+```
+<svg>
+  <image href="">
+</svg>
+```

@@ -19,3 +19,21 @@
 
 - express在每个中间件中有req，res，在res.send()后响应结束
 - koa封装了context，在所有中间件执行完毕后才会进行响应，所以可以多次设置ctx.body = "info"
+
+## 常用插件
+
+express
+
+- body-parser:处理post请求中的data
+- formidable：处理文件上传
+- express-session：处理session
+- mongoose：和mongodb合作
+
+koa2
+
+- koa-bodyparser：处理post请求，包括文件上传
+- koa-router：处理路由
+- koa-static：处理静态文件
+- koa-session：处理session
+- koa-jwt：处理token
+- koa-logger：输出日志

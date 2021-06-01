@@ -34,6 +34,11 @@
 
 此生命周期之前会执行数据更新和视图更新，在此钩子函数时DOM已经完成更新。
 
+## beforeActivat activated
+
+当设置keepalive时候进入的生命周期。  
+当组件被销毁并重建时，不会进入created等生命周期，会进入activated
+
 ## beforeDestroy
 
 ## destroyed
