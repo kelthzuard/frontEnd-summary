@@ -95,3 +95,7 @@
 
 - visibility
 - 所有文字相关的样式: font-size, color, font-weight, white-space, line-height, text-decoration
+
+## z-index
+
+z-index需要设置父级和当前位置的定位都不为postition:static,可以为其他position值或者flex等

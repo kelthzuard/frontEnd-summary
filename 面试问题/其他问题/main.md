@@ -79,3 +79,8 @@ https://segmentfault.com/a/1190000011516068?utm_source=sf-similar-article
   <image href="">
 </svg>
 ```
+
+## 为什么var可以重复声明，其他不可以
+
+在编译器执行构造活动变量时，遇到已经声明过的var会直接进行赋值。
+而遇到let，const会造成临时性死区，报错。
