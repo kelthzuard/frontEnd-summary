@@ -134,3 +134,8 @@ false -阻塞执行b.js，引入a.js的以执行部分，此时a.js中done为fal
 true: 此时a.js中b为真，输出true
 'a执行完'
 ```
+
+## export 和 export default
+
+- export default只能有一个，而export可以有多个
+- 用export导出的，import时需要import对应的名字，default不用，相当于没有名字，自己起

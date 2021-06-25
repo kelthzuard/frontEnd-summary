@@ -1,11 +1,5 @@
-async function func1() {
-    console.log('1s')
-    await func2()
-    console.log('1e')
+for (let i = 0; i < 10; i ++) {
+    for (let i = 0; i < 1; i ++) {
+        console.log(i)
+    }
 }
-
-async function func2() {
-    console.log('2')
-}
-
-func1()

@@ -78,3 +78,16 @@ class Dog extends Animal{
 - es6 继承的本质是调用父构造函数并修改父构造函数实例的this来得到子类。所以必须先super()
 - 对于非es6继承。```Child.__proto__ == Function.prototype```
 - 对于es6继承 ```Child.__proto__ = Father```
+
+## 调用new时候发生的事情
+
+- 创建一个新对象，并将新对象的__proto__指向构造函数的prototype
+- 将构造函数的this指向新对象并执行构造函数，并执行构造函数
+- 得到返回的结果，如果是object，返回object。否则返回对象。
+
+## new.target
+
+只能用在构造函数中，返回new命令作用的那个构造函数，如果不是通过new命令作用，则返回undefined
+
+- 用在判断是不是new调用的构造函数，不是的化抛出错误
+- 用在继承类的父类中，父类只能作为继承，不能作为直接实例化。

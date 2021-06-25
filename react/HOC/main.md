@@ -59,3 +59,50 @@ class AddProps extends Component{
 }}>
 </AddProps>
 ```
+
+## HOC作用
+
+- 强化props
+  - 混入props
+  - 抽离state控制更新
+- 控制渲染：条件渲染
+- 监听事件，劫持声明周期
+
+## HOC实例
+
+### withRoute
+
+withRoute给没有出现在route中的组件提供路由属性，让其可以拿到this.props.history, this.props.location
+
+实现原理：用provider，consumer拿到route实例，并通过props的方式传到包装组件中。
+
+### connect
+
+connect同样通过provider，consumer拿到store实例，将state和dispatch传给mapStatetoprops和mapDispatchtoProps，再通过HOC将参数传入子组件。
+
+## 使用HOC的注意事项
+
+### 继承静态属性
+
+通过HOC构造的组件无法继承原组件的静态方法，需要手动进行事件赋值或者使用第三方库
+
+### 传递ref
+
+ref无法通过props进行传递，因为不是简单的js对象，而是会做深层的处理。如果直接进行传递，则会指向最内层而不是包装组件。
+
+需要通过fowardRef将ref进行传递
+
+## 优缺点
+
+- Hoc
+  - 优点
+    - 逻辑复用
+    - 不影响内部组件逻辑
+  - 缺点
+    - 不好控制props的传递，props名字确定
+    - 多层嵌套不好排查props来源
+    - 同名props会覆盖
+- renderProps
+  - 优点：灵活控制props传递方式
+  - 缺点：
+    - 无法在return外访问数据，即无法灵活的更改生命周期等。

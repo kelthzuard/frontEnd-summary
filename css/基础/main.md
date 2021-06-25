@@ -99,3 +99,19 @@
 ## z-index
 
 z-index需要设置父级和当前位置的定位都不为postition:static,可以为其他position值或者flex等
+
+## position
+
+- static
+- relative
+- absolute(脱离文档流)
+- fixed （脱离文档流）
+
+子元素为absolute和relative时，会相对第一个position不为static的父元素定位。  
+如果父元素为relative或absolute或fixed进行了偏移时，子元素也会相对偏移后的位置定位。
+
+## top，left和translate区别
+
+- top和left是相对于文档流定位，改变的是自身的真实位置
+- translate真实位置不改变，改变的是视觉位置
+- translate改变用的是合成层。没有回流和重绘

@@ -95,6 +95,11 @@ webpack的功能包括：
 - client收到后对比当前module，通过jsonp再次发送请求的js文件
 - runtime更新文件，完成更新。
 
+### runtime mainfest
+
+- runtime: 在浏览器运行过程中，webpack 用来连接模块化应用程序所需的所有代码。它包含：在模块交互时，连接模块所需的加载和解析逻辑。简单理解就是所有代码
+- mainfest：就是webpack会把你的代码结构拆成很多小块，mainfest保留着各个模块的关联关系和要点，runtime能根据mainfest快速找到关联关系。
+
 ![image](./img.jpg)
 
 ## 编写loader

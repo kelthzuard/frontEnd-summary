@@ -1,0 +1,44 @@
+<html>
+<head>
+<style>
+    .fromDrag{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    .middle{
+        width: 100px;
+        height: 100px;
+        background-color: black;
+    }
+    .toDrag{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(47, 0, 255);
+    }
+</style>
+</head>
+<body>
+    <div id="drag" class="fromDrag"  draggable="true"></div>
+    <div class="middle"></div>
+    <div class="toDrag" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">a</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var drag = document.querySelector('#drag')
+    drag.addEventListener('dragstart', function(ev) {
+        ev.dataTransfer.setData("text/html", ev.target.outerHTML);
+        ev.dataTransfer.dropEffect = "move";
+    })
+})
+function handleDragOver(ev) {
+    ev.preventDefault()
+}
+
+function handleDrop(ev) {
+    ev.preventDefault()
+    var data = ev.dataTransfer.getData('text/html')
+    ev.target.innerHTML = data
+}
+</script>
+</body>
+</html>
