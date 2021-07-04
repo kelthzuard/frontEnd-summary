@@ -1,5 +1,13 @@
 # vue3 composition 
 
+## createApp
+
+vue3中使用createApp创造vue实例。这样和以前new Vue的区别是。  
+createApp有自己的组件作用域，在一个createApp中生成的组件实例不会影响到另一个createApp内。  
+而new Vue共享组件实例。
+
+另外，vue3中废除了实例方法中的```$on```, ```$off```,只保留了```$emit```，所以无法像以前一样使用eventBus，需要自己写一个事件总线。
+
 ## 让数据成为响应式
 
 - reactive(obj)：让一个对象成为响应式对象

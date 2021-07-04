@@ -64,3 +64,10 @@ document.querySelector('#father').appendChild(frag)
 - 合成线程将图层分成图块，并在光栅化线程池中将图块转换成位图。
 - 合成线程发送绘制图块命令DrawQuad给浏览器进程。
 - 浏览器进程根据DrawQuad消息生成页面，并显示到显示器上
+
+## 阻塞渲染
+
+css不会阻塞dom的解析，但是会阻塞dom的渲染。(构造dom tree不会依赖cssom，但构造渲染树进行渲染需要cssom。)
+js会阻塞dom的解析和渲染(因为以前js经常有document.write，可能会印象后序html的排版)
+css的下载会阻塞js，js会阻塞dom解析。如果都放在头部，将js放在css之前会更好。  
+在js和css加载完之后才会触发Domcontentloaded

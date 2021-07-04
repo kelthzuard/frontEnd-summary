@@ -59,3 +59,15 @@ console.log(Number(undefined)) // NaN
 
 - null == undefined true
 - null ==== undefined false
+
+## == 
+
+- 在使用 == 会做隐式转换
+- 使用 === 不做隐式转换，需要类型相同且指相同（引用类型地址相同）
+- undefined和null和除本身外任何值都不相同，但undefined == null，但undefined !== null
+- 只有 0, '', false, undefined, null, NaN 在判断时视为false，但undefined， null, NaN 均和 false不相等。即 undefined != false
+
+## 其他
+
+- 0 + undefined == NaN
+- a = [], a[5] = undefined, a.length = 6
