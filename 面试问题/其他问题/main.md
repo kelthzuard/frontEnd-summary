@@ -23,6 +23,11 @@ https://segmentfault.com/a/1190000011516068?utm_source=sf-similar-article
   - name: 'keyword' content="" 描述网页关键字
   - name: 'description' content="" 描述网页
   - name: 'viewpoint' content="width=device-width, inital-scale=1"
+  - charset: 表明网页字符码
+  - http-equiv：指明头信息
+```
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+```
 - base:指明所有url的相对url
 
 ## 内存泄漏
@@ -200,3 +205,34 @@ https://segmentfault.com/a/1190000011516068?utm_source=sf-similar-article
 
 - 随机选择：随机选择基准点，再和left交换即可
 - 三路归并：如果每次选择的是中点是最好的，但每次扫描的时间复杂度就会很高。所以选中间和左右三个点的中位数作为基准点。
+
+## 索引优缺点
+
+优点
+
+- 加快数据库检索速度
+- 加速表和表之间的连接
+- 减少分组和排序的时间
+
+缺点
+
+- 创建索引和维护索引需要耗费时间，这种时间随着数据量增加而增加
+- 索引要占额外物理空间
+- 当对表中的数据进行增删时，要对索引进行动态的维护。
+
+## redux 三大原则
+
+- 单一数据源：单个应用得state是唯一得
+- state是只读得，只允许触发action
+- reducer是纯函数
+
+## 浏览器tab是一个单独得进程
+
+优点
+
+- 多个进程间不共享内存，安全性能得到保证，如果是多线程可能会存在获取非法数据得可能
+- 进程不共享资源，所以多线程中一个线程崩溃会影响对应得内存和资源，导致其他tab崩溃
+
+缺点
+
+- 进程启动和关闭和引起额外得开销。

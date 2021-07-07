@@ -18,3 +18,12 @@
   - flex：1或auto 即 1，1，auto默认放大
 - order：排列顺序
 - align-self：与align-items属性相同，允许子级属性拥有自己的交叉轴排列方式。
+
+flex的值有三种属性
+
+- auto: 1 1 auto
+- initial: 0 1 auto
+- none: 0 0 auto
+- 单值语法：如果只有一个无单位数，会被当做flex-grow的值，且默认flex-shrink为1，即 flex: 1 -> 1 1 auto
+- 有单位单值：会被视为flex-basis值
+- 双值：第一个值必须为无单位的数，被认为是grow，第二个值可以是不带单位的shrink，或者带单位的basis

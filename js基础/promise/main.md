@@ -166,3 +166,10 @@ list.reduce((prev, cur) => {
 21init_url
 321init_url
 ```
+
+## promise 错误捕捉
+
+promise的错误会一起向下传递到第一个错误处理程序中  
+这个错误处理程序可以是Promise.prototype.catch也可以是Promise.then(null, handleReject)  
+但一定要注意，try catch无法捕获reject错误，虽然reject本身是throw new Error。但try catch建立了一个同步的执行栈，但promise是异步的抛出错误。  
+所以try catch永远无法捕捉promise错误，promise错误只能由错误方法捕捉。

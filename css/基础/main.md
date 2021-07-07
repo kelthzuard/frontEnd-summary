@@ -43,6 +43,10 @@
     - :hover
     - :active
 
+nth-child:指子节点
+element:nth-of-type:指该节点相同类型得兄弟节点。比如
+p:nth-of-type(2n) 指p节点得偶数节点，其他非p节点不参与计数。
+
 ### 伪元素
 
 - ::first-line
@@ -91,7 +95,7 @@
 - 设置postion为absolute，top:0,left:0,right:0,bottom:0,会继承父元素的宽高
 - 相同情况下设置宽高，并margin: auto，会自动计算位置，等于垂直居中。
 
-## 可继承的样式
+## 默认继承的样式
 
 - visibility
 - 所有文字相关的样式: font-size, color, font-weight, white-space, line-height, text-decoration
@@ -106,12 +110,22 @@ z-index需要设置父级和当前位置的定位都不为postition:static,可�
 - relative
 - absolute(脱离文档流)
 - fixed （脱离文档流）
+- sticky
 
 子元素为absolute和relative时，会相对第一个position不为static的父元素定位。  
 如果父元素为relative或absolute或fixed进行了偏移时，子元素也会相对偏移后的位置定位。
+
+stick当其在视口范围内时为relative，否则为fixed。如果其父元素不在视口范围内，则其消失
 
 ## top，left和translate区别
 
 - top和left是相对于文档流定位，改变的是自身的真实位置
 - translate真实位置不改变，改变的是视觉位置
 - translate改变用的是合成层。没有回流和重绘
+
+## unset, inital, inherit, all
+
+- inital: 设置为css该属性预设的初始值
+- inherit：继承父元素的该样式
+- unset：该属性默认继承时设置为继承，否则为inital
+- all：表明所有css属性，设置值只能为unset，inital盒inherit

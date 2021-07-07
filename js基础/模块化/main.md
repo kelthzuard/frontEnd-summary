@@ -139,3 +139,30 @@ true: 此时a.js中b为真，输出true
 
 - export default只能有一个，而export可以有多个
 - 用export导出的，import时需要import对应的名字，default不用，相当于没有名字，自己起
+
+
+## webpack中对commonjs和esmodule的区别
+
+- 对于commonjs，webpack导出的是一个赋值形式，实现的是浅拷贝
+
+```
+var num = 1
+function increase() {return num ++}
+module.exports = {
+    num: num,
+    increase: increase
+}
+```
+
+这样导出后num被重新赋值，increase赋值了指针。相当于一层浅拷贝。无论如果调用increase，num也不会变化
+
+- 对于esmodule，webpack导出的是一个函数形式，由于作用域链的原因(闭包)，会始终向上去找变量，可以实时更新，相当于引用
+
+```
+var num = 1
+function increase() {return num ++}
+module.exports = {
+    num: () => num
+    increase: () => increase
+}
+```
